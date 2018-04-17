@@ -1,7 +1,11 @@
 apply plugin: "kotlin"
 
 sourceCompatibility = 1.6
-sourceSets.main.java.srcDirs = [ "src/" ]
+
+sourceSets {
+	main.java.srcDirs = ["src/main/java"]
+ 	main.kotlin.srcDirs = ["src/main/kotlin"]
+}
 
 project.ext.mainClassName = "com.mygdx.game.desktop.DesktopLauncher"
 project.ext.assetsDir = new File("../core/assets");

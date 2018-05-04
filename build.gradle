@@ -4,7 +4,7 @@ buildscript {
     repositories {
         mavenLocal()
         mavenCentral()
-        maven { url "https://oss.sonatype.org/content/repositories/snapshots/" }
+        maven { url "https://std.loto-quebec.com/nexus/content/groups/public/" }
         jcenter()
     }
     dependencies {
@@ -31,8 +31,8 @@ allprojects {
     repositories {
         mavenLocal()
         mavenCentral()
-        maven { url "https://oss.sonatype.org/content/repositories/snapshots/" }
-        maven { url "https://oss.sonatype.org/content/repositories/releases/" }
+        maven { url "https://std.loto-quebec.com/nexus/content/groups/public/" }
+        maven { url "https://std.loto-quebec.com/nexus/content/groups/public/" }
     }
 }
 

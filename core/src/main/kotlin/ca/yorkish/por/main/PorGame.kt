@@ -4,23 +4,25 @@ import ca.yorkish.por.menu.MainMenuScreen
 import ca.yorkish.por.menu.MenuScreen
 import com.badlogic.gdx.Game
 import com.badlogic.gdx.Gdx
-import com.badlogic.gdx.graphics.GL20
-import com.badlogic.gdx.graphics.Texture
-import com.badlogic.gdx.graphics.g2d.SpriteBatch
+import com.badlogic.gdx.assets.AssetManager
 import java.util.Stack
 
 class PorGame : Game() {
 	val stateStack = Stack<MenuScreen>()
-
+	val manager = AssetManager()
+	
 	override fun create() {
-		stateStack.push(MainMenuScreen())
+		val menuScreen = MainMenuScreen(manager)
+		menuScreen.create()
+		stateStack.push(menuScreen)
 	}
 
 	override fun render() {
-		stateStack.peek().update
+		stateStack.peek().update(0F)
 		stateStack.peek().render(Gdx.graphics.getDeltaTime())
 	}
 
 	override fun dispose() {
+		manager.dispose()
 	}
 }

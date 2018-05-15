@@ -5,15 +5,20 @@ import com.badlogic.gdx.assets.AssetManager
 import com.badlogic.gdx.graphics.GL20
 import com.badlogic.gdx.graphics.Texture
 import com.badlogic.gdx.graphics.g2d.SpriteBatch
+import com.badlogic.gdx.graphics.OrthographicCamera
 
 // https://gitlab.com/InfectedBytes/SolarColony/blob/master/SolarColony/core/src/com/infectedbytes/solarcolony/ScreenState.java
 class MainMenuScreen(val manager : AssetManager) : MenuScreen(manager) {
 
 	val batch: SpriteBatch = SpriteBatch()
-
+	val camera: OrthographicCamera = OrthographicCamera(320F, 200F)
+			
 	override fun create() {
-		manager.load("badlogic.jpg", Texture::class.java)
+		manager.load("common.png", Texture::class.java)
 		manager.finishLoading()
+		
+		camera.position.set(320F/2, 200F/2, 0F)
+		camera.update()
 	}
 	
 	override fun update(delta: Float) {
@@ -28,11 +33,17 @@ class MainMenuScreen(val manager : AssetManager) : MenuScreen(manager) {
 	}
 
 	override fun render(delta: Float) {
-		val texture = manager.get("badlogic.jpg", Texture::class.java)
-		Gdx.gl.glClearColor(1F, 0F, 0F, 1F)
+		
+		camera.update()
+		val texture = manager.get("common.png", Texture::class.java)
+		Gdx.gl.glClearColor(0.3F, 1F, 0.5F, 1F)
 		Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT)
+
+		batch.setProjectionMatrix(camera.combined);
+		
 		batch.begin()
-		batch.draw(texture, 0F, 0F)
+		batch.draw(texture, 0F, 0F, 16,0,8,8)
+		batch.draw(texture, 8F, 0F, 16,0,8,8)
 		batch.end()
 	}
 
